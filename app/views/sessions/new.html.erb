@@ -3,10 +3,14 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(:session, url: login_path) do |f| %>
-        <%= f.label :email %>
+        <div class="form-group">
+        <label for="message_email" class="control-label col-md-12">メールアドレス</label>
         <%= f.email_field :email, class: 'form-control' %>
-        <%= f.label :password %>
+        </div>
+        <div class="form-group">
+        <label for="message_password" class="control-label col-md-12">パスワード</label>
         <%= f.password_field :password, class: 'form-control' %>
+        </div>
         <%= f.submit "ログイン", class: "btn btn-primary" %>
     <% end %>
     <p>New user? <%= link_to "会員登録", signup_path %>　</p>

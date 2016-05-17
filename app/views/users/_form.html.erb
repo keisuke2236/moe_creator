@@ -1,19 +1,33 @@
     <%= form_for(@user) do |f| %>
         <%  #エラーがあった場合はレンダリングする %>
         <%= render 'shared/error_messages', object: f.object %>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-        <%= f.label :age %>
-        <%= f.text_field :age %>
-        <%= f.label :area %>
-        <%= f.text_field :area %>
-        <%= f.label :hp %>
-        <%= f.text_field :hp %>
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-        <%= f.label :password_confirmation, "Confirmation" %>
-        <%= f.password_field :password_confirmation %>
+        <div class="form-group">
+        <label for="message_name" class="control-label col-md-12">名前</label>
+        <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+        <label for="message_age" class="control-label col-md-12">年齢</label>
+        <%= f.text_field :age, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+        <label for="message_area" class="control-label col-md-12">住まい</label>
+        <%= f.text_field :area, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+        <label for="message_hp" class="control-label col-md-12">ホームページ</label>
+        <%= f.text_field :hp, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+        <label for="message_email" class="control-label col-md-12">メールアドレス</label>
+        <%= f.email_field :email, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+        <label for="message_password" class="control-label col-md-12">パスワード</label>
+        <%= f.password_field :password, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+        <label for="message_password_confirmation" class="control-label col-md-12">パスワード再入力</label>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
         <%= f.submit "保存する", class: "btn btn-large btn-primary" %>
     <% end %>
