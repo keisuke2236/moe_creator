@@ -2,7 +2,9 @@ class UsersController < ApplicationController
   before_action :user_check, only: [:edit, :update]
   def show # 追加
     if logged_in?
-      @user = User.find(current_user)
+      @user = User.find(params[:id])
+      #ツイート一覧にはそのユーザーのツイート一覧を作成日順降順で並べたものを入れる
+      @microposts = @user.microposts.order(created_at: :desc)
     else
     redirect_to login_url
     end

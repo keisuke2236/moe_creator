@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   #セッションを保持するsessionsというモデルを操作するリセットフルなURLを作る
   #sessionsの作成と，セッションの作成，セッションの破棄の3種類だからこうなる
   resources :sessions, only: [:new, :create, :destroy]
+  #micropostsを操作するためのURLもつくってちょ
+  resources :microposts
 end
