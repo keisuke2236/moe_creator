@@ -1,7 +1,36 @@
 <h1>編集画面</h1>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= render 'form' %>
+  <div class="col-md-12 col-md-offset-0">
+    <%# form_forには do |f|〜ENDまでの内容が全て送信される %>
+<%= form_for(current_user, html: {class: "form-horizotal"}) do |f| %>
+<div class="form-group">
+    <label for="message_name" class="control-label col-md-2">名前</label>
+    <div class="col-md-10"><%= f.text_field:name, :class => "form-control" %></div>
+</div>
+<div class="form-group">
+    <label for="message_age" class="control-label col-md-2">年齢</label>
+    <div class="col-md-10"><%= f.text_field:age, :class => "form-control" %></div>
+</div>
+<div class="form-group">
+    <label for="message_area" class="control-label col-md-2">住所</label>
+    <div class="col-md-10"><%= f.text_area :area, :class => "form-control" %></div>
+</div>
+<div class="form-group">
+    <label for="message_email" class="control-label col-md-2">メールアドレス</label>
+    <div class="col-md-10"><%= f.text_field:email, :class => "form-control" %></div>
+</div>
+<div class="form-group">
+    <label for="message_password" class="control-label col-md-2">パスワード</label>
+    <div class="col-md-10"><%= f.text_field:password, :class => "form-control" %></div>
+</div>
+<div class="form-group">
+    <label for="message_password_confirmation" class="control-label col-md-2">再入力</label>
+    <div class="col-md-10"><%= f.text_field:password_confirmation, :class => "form-control" %></div>
+</div>
+<div class="form-group">
+    <%= f.submit :class => "btn btn-success button1 col-md-10 col-md-offset-1" %>
+</div>
+<% end %>
   </div>
 </div>
