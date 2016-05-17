@@ -21,6 +21,26 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    @user = current_user
+  end
+  
+  def update
+    #user_paramsの確認をしてみよう
+    #userの変数にはなんと便利なことにupdateクラスとかいうのがついててめんどくさいことしなくておk！すごい
+    #⬆️全くもってそんなことはなかった@message = Message.find(params[:id])みたいな感じでちゃんとほぞんしましょう　
+    
+    
+    #ログイン中のユーザー情報のポインタを@userに入れて
+    @user = User.find(current_user[:id])
+    #ログイン中のユーザー情報を参照している@userに対して送られてきた値を入れれば完成
+    @user.update(user_params)
+    #表示する内容を準備して　リダイレクト
+    flash[:info] = "#{user_params[:name]}さんの情報を修正しました"
+    redirect_to edit_user_path(current_user)
+    
+  end
+  
   
   #user_paramsが送られてきたときに処理されるはず
   private
