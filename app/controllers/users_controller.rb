@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     #ここのif分でprefixが呼ばれる
     if @user.save
       flash[:success] = "会員登録が完了しました，ログインしてください"
-      redirect_to @user
+      redirect_to user_path(@user)
       #これと同じ動作をする
       #redirect_to user_path(@user)
     else
@@ -34,22 +34,20 @@ class UsersController < ApplicationController
   end
   
   def update
-    #binding.pry
-    #user_paramsの確認をしてみよう
-    #ログイン中のユーザー情報のポインタを@userに入れて
-    @user = User.find(current_user[:id])
-    #ログイン中のユーザー情報を参照している@userに対して送られてきた値を入れれば完成
-    @user.update(user_params)
-    #表示する内容を準備して　リダイレクト
-    flash[:info] = "#{user_params[:name]}さんの情報を修正しました"
-    redirect_to edit_user_path(current_user)
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "Profile updated"
+      redirect_to @user
+    else 
+      render 'edit'
+    end
   end
 
   
   #user_paramsが送られてきたときに処理されるはず，カラムを追加したらこれもやろう
   private
   def user_params
-        params.require(:user).permit(:name, :area ,:age ,:email, :password, :password_confirmation)
+        params.require(:user).permit(:name, :area ,:age ,:email,:hp, :password, :password_confirmation)
   end
   
   def user_check
