@@ -55,9 +55,10 @@ class UsersController < ApplicationController
   
   #フォローされているユーザー一覧を表示するページ
   def followers
-    @user = User.find(params[:id])
-    @users = @user.following_relationships
     
+    @user = User.find(params[:id])
+    #binding.pry
+    @users = @user.follower_users
   end
 
   

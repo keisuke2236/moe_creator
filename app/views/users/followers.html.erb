@@ -14,7 +14,7 @@
         <% @users.each do |user| %>
             <% #ここで渡すidはリレーションシップのid %>
             <% #binding.pry %>
-            <%= render partial: 'users/follower_users', locals: { user: User.find_by(id: user.id), usr:@user } %>
+            <%= render partial: 'users/follower_users', locals: { user: user, usr:@user } %>
         <% end %>
       </ol>
     <% else %>

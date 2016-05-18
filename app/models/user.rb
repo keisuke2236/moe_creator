@@ -22,10 +22,15 @@ class User < ActiveRecord::Base
     has_many :microposts
     
     #フォローしている人の塊を所持する
-  has_many :following_relationships, class_name:  "Relationship",
+    has_many :following_relationships, class_name:  "Relationship",
                                      foreign_key: "follower_id",
                                      dependent:   :destroy
-  has_many :following_users, through: :following_relationships, source: :followed
+    has_many :following_users, through: :following_relationships, source: :followed
+    
+    has_many :follower_relationships, class_name:  "Relationship",
+                                    foreign_key: "followed_id",
+                                    dependent:   :destroy
+    has_many :follower_users, through: :follower_relationships, source: :follower
     #フォロー機能
     def follow(other_user)
         #フォローリレーションからfollowed_idで検索　値はフォローするユーザのid
