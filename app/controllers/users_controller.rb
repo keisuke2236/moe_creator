@@ -6,8 +6,11 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       #ツイート一覧にはそのユーザーのツイート一覧を作成日順降順で並べたものを入れる
       @microposts = @user.microposts.order(created_at: :desc)
+    else
+      redirect_to login_url
     end
   end
+  
   
   def new
     @user = User.new
@@ -21,6 +24,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "会員登録が完了しました，ログインしてください"
       redirect_to @user
+
       #これと同じ動作をする
       #redirect_to user_path(@user)
     else
@@ -47,14 +51,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     #binding.pry
     @users = current_user.following_users
-    @microposts = @user.microposts.order(created_at: :desc)
   end
   
   #フォローされているユーザー一覧を表示するページ
   def followers
-
+    @user = User.find(params[:id])
+    #binding.pry
+    @users = @user.following_relationships
+    @microposts = @user.microposts.order(created_at: :desc)
   end
-  
 
   
   #user_paramsが送られてきたときに処理されるはず，カラムを追加したらこれもやろう

@@ -1,7 +1,7 @@
 #モジュールきたーw　なんかクラスとは違うけど継承して使えるやつだよね
 module UsersHelper
   def gravatar_for(user, options = { size: 80 })
-    binding.pry
+    #binding.pry
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
     size = options[:size]
     gravatar_url = "https://secure.gravatar.com/avatar/

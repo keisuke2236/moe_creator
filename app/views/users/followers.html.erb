@@ -1,1 +1,26 @@
-<h1>フォローされているユーザー一覧</h1>
+<div class="row">
+  <aside class="col-md-12">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>さんがフォローされているユーザー一覧
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-10">
+    <%= render 'follow_form' if logged_in? %>
+    <% if @users.any? %>
+      <h3>フォロワー一覧 (<%= @users.count %>)</h3>
+      <ol class="microposts">
+        <% @users.each do |user| %>
+            <% #ここで渡すidはリレーションシップのid %>
+            <% #binding.pry %>
+            <%= render partial: 'users/follower_users', locals: { user: User.find_by(id: user.id), usr:@user } %>
+        <% end %>
+      </ol>
+    <% else %>
+        <h1>フォローしているユーザーはいません<br /></h1>
+    <% end %>
+  </div>
+
+</div>

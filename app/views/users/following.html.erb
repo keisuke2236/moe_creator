@@ -1,5 +1,5 @@
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-12">
     <section class="user_info">
       <h1>
         <%= gravatar_for @user %>
@@ -7,7 +7,7 @@
       </h1>
     </section>
   </aside>
-  <div class="col-md-8">
+  <div class="col-md-10">
     <%= render 'follow_form' if logged_in? %>
     <% if @users.any? %>
       <h3>フォローユーザ一覧 (<%= @users.count %>)</h3>
