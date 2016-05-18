@@ -5,8 +5,6 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       #ツイート一覧にはそのユーザーのツイート一覧を作成日順降順で並べたものを入れる
       @microposts = @user.microposts.order(created_at: :desc)
-    else
-    redirect_to login_url
     end
   end
   

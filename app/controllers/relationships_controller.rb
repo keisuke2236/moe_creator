@@ -3,7 +3,7 @@ class RelationshipsController < ApplicationController
     
     def create
         #User一覧の中からフォローしたいと送られてきたparams[:follow_]id]をさがして入れる
-        @user = User.find(params[:follow_id])
+        @user = User.find(params[:followed_id])
         #現在ログインしているユーザーのフォローメソッド（Userモデルに記述してある）を使ってフォロー
         current_user.follow(@user)
     end

@@ -28,5 +28,7 @@ module Microposts
       g.helper false
       g.test_framework false
     end
+    # ajaxを用いて安全にデータ取引するためのお守り
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end
