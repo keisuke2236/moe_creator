@@ -10,7 +10,13 @@ Rails.application.routes.draw do
   post   'login' , to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
-  resources :users
+  #resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   #セッションを保持するsessionsというモデルを操作するリセットフルなURLを作る
   #sessionsの作成と，セッションの作成，セッションの破棄の3種類だからこうなる
   resources :sessions, only: [:new, :create, :destroy]

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :user_check, only: [:edit, :update]
+  
   def show # 追加
     if logged_in?
       @user = User.find(params[:id])
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
     #ここのif分でprefixが呼ばれる
     if @user.save
       flash[:success] = "会員登録が完了しました，ログインしてください"
-      redirect_to user_path(@user)
+      redirect_to @user
       #これと同じ動作をする
       #redirect_to user_path(@user)
     else
@@ -40,12 +41,26 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+  
+  #フォローしているユーザー一覧を表示するページ
+  def following
+    @user = User.find(params[:id])
+    #binding.pry
+    @users = current_user.following_users
+    @microposts = @user.microposts.order(created_at: :desc)
+  end
+  
+  #フォローされているユーザー一覧を表示するページ
+  def followers
+
+  end
+  
 
   
   #user_paramsが送られてきたときに処理されるはず，カラムを追加したらこれもやろう
   private
   def user_params
-        params.require(:user).permit(:name, :area ,:age ,:email,:hp, :password, :password_confirmation)
+        params.require(:user).permit(:name, :area ,:age ,:email ,:hp, :password, :password_confirmation)
   end
   
   def user_check
