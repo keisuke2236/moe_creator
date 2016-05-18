@@ -1,14 +1,14 @@
 <li id="user-<%= user.id %>" class="col-md-10">
   <%= link_to gravatar_for(user, size: 50), user %>
   <span class="user"><%= link_to user.name, user %></span>
-  <span class="content"><%= user.area %></span>
+  <span class="area"><%= user.area %></span>
   <% #binding.pry %>
   <span class="timestamp">
     Posted <%= time_ago_in_words(user.created_at) %> ago.
   </span>
 </li>
 <li class="col-md-2">
-  <% #やっぱり本人確認はひっす　 %>
+  <% #ページ閲覧者＝本人の場合フォロー解除できる　 %>
     <% if current_user == usr %>
         <% #フォロー解除メソッド リレーションシップコントローラーのデリートへ飛ばす　 %>
         <%= link_to "フォロー解除", relationship_path(id: usr.following_relationships.ids), method: :DELETE, data: { confirm: "フォロー解除" },class: "btn btn-mini btn-danger" %>

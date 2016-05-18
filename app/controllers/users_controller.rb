@@ -50,15 +50,14 @@ class UsersController < ApplicationController
   def following
     @user = User.find(params[:id])
     #binding.pry
-    @users = current_user.following_users
+    @users = @user.following_users
   end
   
   #フォローされているユーザー一覧を表示するページ
   def followers
     @user = User.find(params[:id])
-    #binding.pry
     @users = @user.following_relationships
-    @microposts = @user.microposts.order(created_at: :desc)
+    
   end
 
   
