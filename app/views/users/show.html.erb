@@ -1,29 +1,33 @@
 <table class="table table-striped">
     <thead>
       <tr>
-        <th><%= gravatar_for current_user %></th>
-        <th colspan="3"><%= current_user[:name] %>さんのプロフィール</th>
+        <th><%= gravatar_for @user %></th>
+        <th colspan="3"><%= @user.name %>さんのプロフィール</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <th scope="row">名前</th>
-        <td><%= current_user.name %></td>
+        <td><%= @user.name %></td>
       </tr>
 
       <tr>
         <th scope="row">年齢</th>
-        <td><%= current_user.age %></td>
+        <td><%= @user.age %></td>
       </tr>
 
       <tr>
         <th scope="row">住まい</th>
-        <td><%= current_user.area %></td>
+        <td><%= @user.area %></td>
       </tr>
       
       <tr>
         <th scope="row">連絡先</th>
-        <td><%= current_user.email %></td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <th scope="row">HP</th>
+        <td><%= @user.hp %></td>
       </tr>
 
     </tbody>
