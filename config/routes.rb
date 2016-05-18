@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   #micropostsを操作するためのURLもつくってちょ
   resources :microposts
+  #フォローとフォロー削除を行うURMつくってちょ
+  resources :relationships, only: [:create, :destroy]
 end

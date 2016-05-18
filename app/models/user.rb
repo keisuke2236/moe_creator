@@ -15,4 +15,27 @@ class User < ActiveRecord::Base
     has_secure_password
     #micropostsを複数持っている
     has_many :microposts
+    
+    #フォローしている人の塊を所持する
+    has_many :follower_relationships, class_name:  "Relationship",
+                                    foreign_key: "followed_id",
+                                    dependent:   :destroy
+    has_many :follower_users, through: :follower_relationships, source: :follower
+    #フォロー機能
+    def follow(other_user)
+        #フォローリレーションからfollowed_idで検索　値はフォローするユーザのid
+        #もしそのユーザーが存在しなかったらフォローする
+        following_relationships.find_or_create_by(followed_id: other_user.id)
+    end
+    
+    #フォロー削除機能
+    def unfollow(other_user)
+        #フォロー状態をフォロー一覧から持ってくる　（対象のidを探して）
+        following_relationship = following_relationships.find_by(followed_id: other_user.id)
+        #そのidをデストロイする  フォローが取れたならね！rails generate controller Relationships
+        following_relationship.destroy if following_relationship
+    end
+    
+    
+    
 end
