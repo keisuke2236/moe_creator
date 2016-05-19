@@ -5,7 +5,9 @@ class UsersController < ApplicationController
     if logged_in?
       @user = User.find(params[:id])
       #ツイート一覧にはそのユーザーのツイート一覧を作成日順降順で並べたものを入れる
-      @microposts = @user.microposts.order(created_at: :desc)
+      #@microposts = @user.microposts.order(created_at: :desc)
+      #binding.pry
+      @microposts = @user.feed_items(request[:page]).includes(:user).order(created_at: :desc)
     else
       redirect_to login_url
     end
