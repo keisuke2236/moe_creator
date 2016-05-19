@@ -1,5 +1,12 @@
 <li id="user-<%= user.id %>" class="col-md-10">
-  <%= link_to gravatar_for(user, size: 50), user %>
+<%= 
+#binding.pry
+if user[:avatar]==nil 
+    link_to gravatar_for(user, size: 50), user
+else 
+    link_to (image_tag user.avatar, :size => '50x50'), user
+end
+%>
   <span class="user"><%= link_to user.name, user %></span>
   <span class="area"><%= user.area %></span>
   <% #binding.pry %>

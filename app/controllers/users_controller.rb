@@ -55,7 +55,6 @@ class UsersController < ApplicationController
   
   #フォローされているユーザー一覧を表示するページ
   def followers
-    
     @user = User.find(params[:id])
     #binding.pry
     @users = @user.follower_users
@@ -65,7 +64,8 @@ class UsersController < ApplicationController
   #user_paramsが送られてきたときに処理されるはず，カラムを追加したらこれもやろう
   private
   def user_params
-        params.require(:user).permit(:name, :area ,:age ,:email ,:hp, :password, :password_confirmation)
+    #binding.pry
+    params.require(:user).permit(:name, :avatar , :area ,:age ,:email ,:hp, :password, :password_confirmation)
   end
   
   def user_check

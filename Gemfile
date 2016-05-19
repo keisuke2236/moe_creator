@@ -32,7 +32,9 @@ gem 'pry-byebug', group: :development
 # Use Unicorn as the app server
 # gem 'unicorn'
 gem 'kaminari'
-
+#画像投稿機能よう
+gem 'carrierwave'
+gem 'cloudinary'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

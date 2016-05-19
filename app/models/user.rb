@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
     validates :age , length: { maximum: 3} , presence: true, on: :update
     validates :age , numericality: {greater_than_or_equal_to:0} , presence: false, on: :update
     
+    mount_uploader :avatar, AvatarUploader
     
     #正規化メールアドレスの正規表現パターン，これを所持する
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
