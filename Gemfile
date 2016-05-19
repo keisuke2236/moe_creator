@@ -37,6 +37,8 @@ gem 'kaminari'
 #画像投稿機能よう
 gem 'carrierwave'
 gem 'cloudinary'
+
+gem 'carrierwave'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
