@@ -55,5 +55,7 @@
         <%= render @microposts %>
       </ol>
     <% end %>
+  <%= paginate(@feed_items) %>
+  <%= page_entries_info(@feed_items) %>
   </div>
 </div>
