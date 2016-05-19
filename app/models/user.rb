@@ -51,9 +51,9 @@ class User < ActiveRecord::Base
         following_users.include?(other_user)
     end
     
-    def feed_items
+    def feed_items(page)
         #ツイート一覧からユーザーidがフォローしているidに加えて自分のidも取り出す
         #配列で検索ってできるんや．．．．　　　where句つええ
-        Micropost.where(user_id: following_user_ids + [self.id])
+        Micropost.page(page).where(user_id: following_user_ids + [self.id]).per(10)
     end
 end

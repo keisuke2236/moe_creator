@@ -31,6 +31,7 @@ gem 'pry-byebug', group: :development
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'kaminari'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
