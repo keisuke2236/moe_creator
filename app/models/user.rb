@@ -1,4 +1,5 @@
 #Userモデルとはいかなるものかを記述したファイル
+#Userから取得したい変数はここに全部記述するべし
 class User < ActiveRecord::Base
     #メールアドレスのアルファベットを小文字にしたやつを所持する
     #コールバック関数before_save　　セーブが行われる前に呼び出される関数
@@ -48,5 +49,11 @@ class User < ActiveRecord::Base
     # あるユーザーをフォローしているかどうか？
     def following?(other_user)
         following_users.include?(other_user)
+    end
+    
+    def feed_items
+        #ツイート一覧からユーザーidがフォローしているidに加えて自分のidも取り出す
+        #配列で検索ってできるんや．．．．　　　where句つええ
+        Micropost.where(user_id: following_user_ids + [self.id])
     end
 end

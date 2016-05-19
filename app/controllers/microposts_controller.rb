@@ -8,6 +8,8 @@ class MicropostsController < ApplicationController
       flash[:success] = "ツイートが完了しました"
       redirect_to root_url
     else
+      #staticページに行く前にあらかじめロードしておくと処理が軽い
+      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc) # この行を追加
       render 'static_pages/home'
     end
   end
