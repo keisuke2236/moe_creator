@@ -9,14 +9,17 @@ class RelationshipsController < ApplicationController
     end
     
     def destroy
-        
-        #削除したいユーザーのidがparamsに入ってるのでフォロー一覧から検索して取り出す
-        @user = current_user.following_relationships.find(params[:id]).followed
-        #ログイン中のユーザーからフォローをやめる
-        current_user.unfollow(@user)
-        #binding.pry
         if request.referrer.include?("follow")
+            #binding.pry
+            @user = User.find_by(id: current_user.following_relationships.find(request[:idendification]).followed_id)
+            current_user.unfollow(@user)
             redirect_to request.referrer
+        else
+            binding.pry
+            #削除したいユーザーのidがparamsに入ってるのでフォロー一覧から検索して取り出す
+            @user = current_user.following_relationships.find(params[:id]).followed
+            #ログイン中のユーザーからフォローをやめる
+            current_user.unfollow(@user)
         end
     end
     

@@ -17,7 +17,7 @@ end
 <li class="col-md-2">
   <% #ページ閲覧者＝本人の場合フォロー解除できる　 %>
     <% if current_user == usr %>
-        <% #フォロー解除メソッド リレーションシップコントローラーのデリートへ飛ばす　 %>
-        <%= link_to "フォロー解除", relationship_path(id: usr.following_relationships.ids), method: :DELETE, data: { confirm: "フォロー解除" },class: "btn btn-mini btn-danger" %>
+        <% #binding.pry %>
+        <%= link_to "フォロー解除", relationship_path(idendification: current_user.following_relationships.find_by(followed_id: user.id)), method: :DELETE,class: "btn btn-mini btn-danger" %>
     <% end %>
 </li>
