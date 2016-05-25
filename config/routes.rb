@@ -16,6 +16,9 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+  
+  resources :snss
+  
 
   #セッションを保持するsessionsというモデルを操作するリセットフルなURLを作る
   #sessionsの作成と，セッションの作成，セッションの破棄の3種類だからこうなる

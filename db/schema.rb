@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519040816) do
+ActiveRecord::Schema.define(version: 20160525084003) do
 
   create_table "microposts", force: :cascade do |t|
     t.integer  "user_id"
@@ -34,6 +34,24 @@ ActiveRecord::Schema.define(version: 20160519040816) do
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
+  create_table "snsrerations", force: :cascade do |t|
+    t.integer  "sns_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "snsrerations", ["sns_id"], name: "index_snsrerations_on_sns_id"
+  add_index "snsrerations", ["user_id"], name: "index_snsrerations_on_user_id"
+
+  create_table "snss", force: :cascade do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -44,6 +62,8 @@ ActiveRecord::Schema.define(version: 20160519040816) do
     t.string   "hp"
     t.integer  "age"
     t.string   "avatar"
+    t.string   "picture"
+    t.string   "bg"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

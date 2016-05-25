@@ -8,10 +8,12 @@ class User < ActiveRecord::Base
     validates :name, presence: true, length: { maximum: 50 }
     validates :area, presence: false, length: { maximum: 30 }, on: :update
     validates :hp, presence: false, length: { maximum: 80 }, on: :update
-    validates :age , length: { maximum: 3} , presence: true, on: :update
+    validates :age , length: { maximum: 3} , presence: false, on: :update
     validates :age , numericality: {greater_than_or_equal_to:0} , presence: false, on: :update
     
     mount_uploader :avatar, AvatarUploader
+    mount_uploader :picture, PictureUploader
+    mount_uploader :bg, BgUploader
     
     #正規化メールアドレスの正規表現パターン，これを所持する
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -33,6 +35,10 @@ class User < ActiveRecord::Base
                                     foreign_key: "followed_id",
                                     dependent:   :destroy
     has_many :follower_users, through: :follower_relationships, source: :follower
+    
+    has_many :snsrerations , foreign_key: "user_id", dependent: :destroy
+    has_many :snss, through: :snsrerations, source: :sns
+
     #フォロー機能
     def follow(other_user)
         #フォローリレーションからfollowed_idで検索　値はフォローするユーザのid

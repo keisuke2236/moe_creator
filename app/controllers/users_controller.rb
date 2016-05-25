@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
   before_action :user_check, only: [:edit, :update]
   
-  def show # 追加
+  def show
+    #binding.pry
     if logged_in?
       @user = User.find(params[:id])
-      #ツイート一覧にはそのユーザーのツイート一覧を作成日順降順で並べたものを入れる
-      #@microposts = @user.microposts.order(created_at: :desc)
-      #binding.pry
+      @snss = Sns.where(user_id:current_user.id)
       @microposts = @user.feed_items(request[:page]).includes(:user).order(created_at: :desc)
     else
       redirect_to login_url
@@ -26,16 +25,18 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "会員登録が完了しました，ログインしてください"
       redirect_to @user
-
-      #これと同じ動作をする
-      #redirect_to user_path(@user)
     else
       render 'new'
     end
   end
   
   def edit
-    @user = current_user
+    if current_user==nil || params["id"]!=current_user.id.to_s
+      redirect_to root_path 
+    else
+      @user = current_user
+      @sns = Sns.new
+    end
   end
   
   def update
@@ -67,7 +68,7 @@ class UsersController < ApplicationController
   private
   def user_params
     #binding.pry
-    params.require(:user).permit(:name, :avatar , :area ,:age ,:email ,:hp, :password, :password_confirmation)
+    params.require(:user).permit(:name, :avatar , :picture, :bg , :area ,:age ,:email ,:hp, :password, :password_confirmation)
   end
   
   def user_check

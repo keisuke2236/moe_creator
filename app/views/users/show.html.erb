@@ -1,20 +1,16 @@
+<span class="col-md-6">
 <table class="table table-striped">
     <thead>
       <tr>
         <th><span class="col-md-12">
-        <%= 
-        if @user[:avatar]==nil 
+        <%= if @user[:avatar]==nil 
           gravatar_for @user 
         else 
           image_tag @user.avatar, :size => '80x80' 
-        end
-        %>
-        
+        end %>
         </span>
-        
-        
         </th>
-        <th colspan="3"><span class="col-md-4"><%= link_to "フォローユーザー", following_user_path(@user) ,class: "btn btn-mini btn-info" %></span>
+        <th colspan="3"><span class="col-md-4"><%= link_to "フォロー", following_user_path(@user) ,class: "btn btn-mini btn-info" %></span>
                         <span class="col-md-4"><%= link_to "フォロワー", followers_user_path(@user) ,class: "btn btn-mini btn-info" %></span>
                         <span class="col-md-4"><%= render 'follow_form' if logged_in? %></span>
         </th>
@@ -27,13 +23,21 @@
       </tr>
 
       <tr>
-        <th scope="row">年齢</th>
-        <td><%= @user.age %></td>
+        <th scope="row">ジャンル</th>
+        <td>
+          萌え
+        </td>
       </tr>
 
       <tr>
-        <th scope="row">住まい</th>
-        <td><%= @user.area %></td>
+        <th scope="row">SNS</th>
+        <td>
+          
+        <% for i in 0..9 %>
+          <% break if @snss[i]==nil %>
+          <a href="<%= @snss[i].url %>"><%= @snss[i].name %></a>
+        <% end %>
+        </td>
       </tr>
       
       <tr>
@@ -46,11 +50,13 @@
       </tr>
     </tbody>
 </table>
+</span>
+<span class="col-md-4">
 <hr>
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12">
     <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <h3>情報提供 (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
@@ -59,3 +65,4 @@
     <% end %>
   </div>
 </div>
+</span>

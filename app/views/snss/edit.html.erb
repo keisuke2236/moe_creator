@@ -1,0 +1,29 @@
+<table class="table table-striped">
+<caption>所持者が多い商品ランキング</caption>
+<thead>
+    <tr>
+    <th class="col-md-4">SNS名</th>
+    <th class="col-md-6">登録URL</th>
+    <th class="col-md-2">登録解除</th>
+    </tr>
+</thead>
+<tbody>
+<%= render @snss %>
+</table>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for(@sns) do |f| %>
+    <% #binding.pry %>
+    <% @sns.user_id = current_user.id %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="form-group">
+        <label for="message_name" class="control-label , col-md-2">SNS名</label>
+        <div class="col-md-10"><%= f.text_field:name, placeholder: "SNS名 例) facebook Twiiter Pixiv tinami", :class => "form-control" %></div>
+        <label for="message_url" class="control-label , col-md-2">マイページ</label>
+        <div class="col-md-10"><%= f.text_field:url, placeholder: "httpからコピペしてください", :class => "form-control" %></div>
+        <%= f.submit :class => "btn btn-success button1 col-md-10 col-md-offset-1" %>
+    </div>
+    <% end %>
+  </div>
+</div>
