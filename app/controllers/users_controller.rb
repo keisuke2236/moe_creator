@@ -2,11 +2,12 @@ class UsersController < ApplicationController
   before_action :user_check, only: [:edit, :update]
   
   def show
-    #binding.pry
     if logged_in?
       @user = User.find(params[:id])
       @snss = Sns.where(user_id:current_user.id)
-      @microposts = @user.feed_items(request[:page]).includes(:user).order(created_at: :desc)
+      @infos = Info.where(user_id: current_user.id).order("created_at DESC")
+      @micropost = current_user.microposts.build
+      @microposts = Micropost.where(touser_id: @user.id).order("created_at DESC")
     else
       redirect_to login_url
     end

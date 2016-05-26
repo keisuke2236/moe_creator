@@ -3,8 +3,8 @@
     <%= link_to "Moe Creatores", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Help", '#' %></li>
+        <li><%= link_to "ホーム", root_path %></li>
+        <li><%= link_to "タグで探す", tags_show_url %></li>
         
         
         <% if logged_in? %>
@@ -28,6 +28,8 @@
               <li><%= link_to "プロフィール", current_user %></li>
               <li><%= link_to "基本設定", edit_user_path(current_user) %></li>
               <li><%= link_to 'SNS設定', edit_sns_path(current_user) %></li>
+              <li><%= link_to '公式ニュース設定', new_info_path(current_user) %></li>
+              <li><%= link_to '描くイラストのタグ設定', tags_new_path(current_user) %></li>
               <li class="divider"></li>
               <li><%= link_to "ログアウト", logout_path, method: "delete" %></li>
             </ul>

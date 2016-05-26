@@ -1,0 +1,22 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th colspan="3"><span class="col-md-4">ニュース(最新5件が表示されます）</span>
+                        <span class="col-md-4">登録URL</span>
+                        <span class="col-md-4">削除</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+
+<% #binding.pry %>
+<% for i in 0..4 %>
+<% break if @infos[i]==nil %>
+<tr>
+    <td><%= @infos[i].text %></td>
+    <td><a href="<%= @infos[i].text %>"><%= @infos[i].link %></a></td>
+    <td><%= link_to '削除',info_path(:id => @infos[i].id),:method => :delete %></td>
+</tr>
+<% end %>
+</tbody>
+</table>

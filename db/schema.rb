@@ -11,13 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525084003) do
+ActiveRecord::Schema.define(version: 20160526070823) do
+
+  create_table "infos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "text"
+    t.string   "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "like_tags", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "info_to"
+    t.integer  "touser_id"
   end
 
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
@@ -52,6 +69,13 @@ ActiveRecord::Schema.define(version: 20160525084003) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -64,6 +88,7 @@ ActiveRecord::Schema.define(version: 20160525084003) do
     t.string   "avatar"
     t.string   "picture"
     t.string   "bg"
+    t.boolean  "sex"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

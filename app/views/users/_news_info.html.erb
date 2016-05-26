@@ -1,0 +1,13 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th colspan="1">公式ニュース</th>
+      </tr>
+    </thead>
+<tbody>
+    <% for i in 0..4 %>
+    <% break if @infos[i]==nil %>
+        <tr><td><%= link_to @infos[i].text,@infos[i].link %></td></tr>
+    <% end %>
+</tbody>
+</table>

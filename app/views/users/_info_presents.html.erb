@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-12">
+    <% if @user.microposts.any? %>
+      <h3>情報提供 (<%= @user.microposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @microposts %>
+      </ol>
+        <%= paginate(@microposts) %>
+        <%= page_entries_info(@microposts) %>
+    <% end %>
+  </div>
+</div>

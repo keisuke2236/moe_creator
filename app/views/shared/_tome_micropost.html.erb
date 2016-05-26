@@ -1,0 +1,23 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th colspan="1">ファンからの情報</th>
+      </tr>
+    </thead>
+<tbody>
+    <% #binding.pry %>
+    <% if current_user.id == @user.id %>
+        <% for i in 0..4 %>
+        <% break if @microposts[i]==nil %>
+            <tr><td><%= @microposts[i].content %></td>
+            <% #binding.pry %>
+            <td><%= link_to '削除',micropost_path(id: @microposts[i].id) , :method => :delete %></td></tr>
+        <% end %>
+    <% else %>
+        <% for i in 0..4 %>
+        <% break if @microposts[i]==nil %>
+            <tr><td><%= @microposts[i].content %></td></tr>
+        <% end %>
+    <% end %>
+</tbody>
+</table>

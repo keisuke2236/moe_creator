@@ -1,7 +1,18 @@
+<% #binding.pry %>
+<% #------------------本人--------------------- %>
+<% if current_user.id == @user.id %>
+
+<% #------------------本人以外--------------------- %>
+<% else %>
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+    <%= f.text_area :content, placeholder: "#{@user.name}さんに関する情報の提供を書いて送信！" %>
+  </div>
+  <div class="field" style="display:none;">
+    <% #binding.pry %>
+    <input id="touser_id" name="touser_id" size="10" type="text" value="<%= @user.id %>" />
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
 <% end %>
