@@ -1,2 +1,2 @@
-class DrawTag < ActiveRecord::Base
+class DrawTag < Ownership
 end

@@ -11,26 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526091204) do
-
-  create_table "draw_tags", force: :cascade do |t|
-    t.integer  "tag_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20160527025522) do
 
   create_table "infos", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "text"
     t.string   "link"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "like_tags", force: :cascade do |t|
-    t.integer  "tag_id"
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -46,6 +32,16 @@ ActiveRecord::Schema.define(version: 20160526091204) do
 
   add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
   add_index "microposts", ["user_id"], name: "index_microposts_on_user_id"
+
+  create_table "ownerships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "ownerships", ["tag_id"], name: "index_ownerships_on_tag_id"
+  add_index "ownerships", ["user_id"], name: "index_ownerships_on_user_id"
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"

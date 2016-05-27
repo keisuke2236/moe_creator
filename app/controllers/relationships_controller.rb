@@ -15,7 +15,7 @@ class RelationshipsController < ApplicationController
             current_user.unfollow(@user)
             redirect_to request.referrer
         else
-            binding.pry
+            #binding.pry
             #削除したいユーザーのidがparamsに入ってるのでフォロー一覧から検索して取り出す
             @user = current_user.following_relationships.find(params[:id]).followed
             #ログイン中のユーザーからフォローをやめる

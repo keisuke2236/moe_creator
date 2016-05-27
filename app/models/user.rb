@@ -38,7 +38,39 @@ class User < ActiveRecord::Base
     
     has_many :snsrerations , foreign_key: "user_id", dependent: :destroy
     has_many :snss, through: :snsrerations, source: :sns
-
+    
+    
+    #user.draws = 中間テーブルが取れる　<=　Drawモデルからuser_idで取得する class_nameは省略可能
+    #foreign_keyはスキーマの方のやつを使うならオーナーシップモデルに描いてあるやつじゃない
+    has_many :draws, class_name: "Draw" , foreign_key: "user_id", dependent: :destroy
+    #user.draw_tags ＝　タグ一覧が取れる
+    #定義済みの中間テーブル（draws）のtagを取得する
+    has_many :draw_tags, through: :draws, source: :tag
+    
+    def draw_tags_add(tag)
+        #binding.pry
+        draws.find_or_create_by(tag: tag)
+    end
+    def draw_tags_del(tag)
+        self.draws.find_by(tag_id: tag.id).destroy if draw? tag
+    end
+    def draw?(tag)
+        self.draws.find_by(tag_id: tag.id) != nil
+    end
+    
+    has_many :likes, class_name: "Like", foreign_key: "user", dependent: :destroy
+    has_many :like_tags , through: :likes, source: :tag
+    def like_tags_add(tag)
+        #binding.pry
+        likes.find_or_create_by(tag: tag)
+    end
+    def like_tags_del(tag)
+        self.like.find_by(tag_id: tag.id).destroy
+    end
+    def like?(tag)
+        self.like.find_by(tag_id: tag.id) != nil
+    end
+    
     #フォロー機能
     def follow(other_user)
         #フォローリレーションからfollowed_idで検索　値はフォローするユーザのid
