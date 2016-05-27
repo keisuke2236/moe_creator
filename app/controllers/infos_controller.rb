@@ -1,5 +1,6 @@
 class InfosController < ApplicationController
   def new
+    @user = current_user
     @info = Info.new
     @infos = Info.where(user_id: current_user.id).order("created_at DESC")
   end

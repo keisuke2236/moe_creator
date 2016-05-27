@@ -6,6 +6,8 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
+
+<% #binding.pry %>
 <% if @user != nil %>
   <body class="allbody" background="<%= @user.picture %>">
 <% else %>

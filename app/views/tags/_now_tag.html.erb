@@ -3,37 +3,18 @@
       <tr><th colspan="3">登録タグ一覧</th></tr>
     </thead>
     <tbody>
-<% #binding.pry %>
-<% for i in 0..100 %>
-<% break if @tags[i]==nil %>
-<tr>
-    <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
-    <td class="col-sm-1"><%= link_to '削除',tags_path(:id => @tags[i].id),:method => :delete %></td>
-    <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
-    <td class="col-sm-1"><%= link_to '削除',tags_path(:id => @tags[i].id),:method => :delete %></td>
-    <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
-    <td class="col-sm-1"><%= link_to '削除',tags_path(:id => @tags[i].id),:method => :delete %></td>
-    <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
-    <td class="col-sm-1"><%= link_to '削除',tags_path(:id => @tags[i].id),:method => :delete %></td>
-    <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
-    <td class="col-sm-1"><%= link_to '削除',tags_path(:id => @tags[i].id),:method => :delete %></td>
-    <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
-    <td class="col-sm-1"><%= link_to '削除',tags_path(:id => @tags[i].id),:method => :delete %></td>
-    <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
-    <td class="col-sm-1"><%= link_to '削除',tags_path(:id => @tags[i].id),:method => :delete %></td>
-    <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
-    <td class="col-sm-1"><%= link_to '削除',tags_path(:id => @tags[i].id),:method => :delete %></td>
-    <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
-    <td class="col-sm-1"><%= link_to '削除',tags_path(:id => @tags[i].id),:method => :delete %></td>
-    <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
-    <td class="col-sm-1"><%= link_to '削除',tags_path(:id => @tags[i].id),:method => :delete %></td>
-    <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
-    <td class="col-sm-1"><%= link_to '削除',tags_path(:id => @tags[i].id),:method => :delete %></td>
-    <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
-    <td class="col-sm-1"><%= link_to '削除',tags_path(:id => @tags[i].id),:method => :delete %></td>
-    <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
-    <td class="col-sm-1"><%= link_to '削除',tags_path(:id => @tags[i].id),:method => :delete %></td>
-</tr>
-<% end %>
+    <tr>
+    <% for i in 0..100 %>
+    <% #binding.pry %>
+        <% break if @tags[i]==nil %>
+            <td class="col-sm-2"><%= link_to Tag.find_by(id: @tags[i].tag_id).name,tags_show_path(id: @tags[i].tag_id) %> </td>
+            <td class="col-sm-1"><%= link_to '削除',tags_destroy_path(:del_id => @tags[i].id), :method => :delete , :class => 'btn btn-danger' %></td>
+        <% i += 1 %>
+        <% if i % 3 == 0 && @tags[i]!=nil %>
+        </tr>
+        <tr>
+        <% end %>
+    <% end %>
+    </tr>
 </tbody>
 </table>

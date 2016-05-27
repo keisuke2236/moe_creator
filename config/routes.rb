@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   get 'tags/show'
 
   get 'tags/new'
+  
+  #get 'tags/new/:id', to: 'tags#new'
+  
+  
 
   get 'tags/create'
 
@@ -36,10 +40,14 @@ Rails.application.routes.draw do
   get 'like_tags/destroy'
 
   get 'infos/new'
+  
+  
 
   get 'infos/show'
 
   get 'infos/destroy'
+  
+  
 
   root to: 'static_pages#home'
   get 'sessions/new'
@@ -64,6 +72,10 @@ Rails.application.routes.draw do
   resources :like_tags
   resources :draw_tags
   resources :infos
+  get 'users/:id/snss_edit', to: 'snss#edit', as: 'sns_edit'
+  get 'users/:id/tags_edit', to: 'tags#new', as: 'tag_edit'
+  get 'users/:id/infos_edit', to: 'infos#new', as: 'info_edit'
+  
 
   #セッションを保持するsessionsというモデルを操作するリセットフルなURLを作る
   #sessionsの作成と，セッションの作成，セッションの破棄の3種類だからこうなる

@@ -3,8 +3,9 @@ class SnssController < ApplicationController
         if current_user==nil || params["id"]!=current_user.id.to_s
             redirect_to root_path 
         else
+            @user = current_user
             @sns = Sns.new
-            @snss = Sns.where(user_id:current_user.id)    
+            @snss = Sns.where(user_id:current_user.id)
         end
     end
     
