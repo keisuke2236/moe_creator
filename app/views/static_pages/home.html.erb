@@ -6,12 +6,12 @@
       </section>
     </aside>
     <div class="col-md-8">
-      <h3>投稿一覧</h3>
-      <%= render 'shared/inf' %>
+      <h3>絵師の公式更新情報</h3>
+      <%= render 'shared/infos' %>
     </div>
   </div>
-  <%= paginate(@feed_items) %>
-  <%= page_entries_info(@feed_items) %>
+  <%= paginate(@infos) %>
+  <%= page_entries_info(@infos) %>
   <% else %>
   <div class="center jumbotron">
     <h1>Welcome to the Microposts</h1>

@@ -3,7 +3,7 @@
       <tr>
         <th><span class="col-md-12">
         <%= if @user[:avatar]==nil 
-          gravatar_for @user 
+          gravatar_for @user
         else 
           image_tag @user.avatar, :size => '80x80' 
         end %>

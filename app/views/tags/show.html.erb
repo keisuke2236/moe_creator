@@ -1,2 +1,5 @@
-
-<%= render 'shared/tags' %>
+<% if params[:id]!=nil %>
+    <%= render 'shared/users' %>
+<% else %>
+    <%= render 'shared/tags' %>
+<% end %>

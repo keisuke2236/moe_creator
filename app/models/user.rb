@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
         self.draws.find_by(tag_id: tag.id) != nil
     end
     
-    has_many :likes, class_name: "Like", foreign_key: "user", dependent: :destroy
+    has_many :likes, class_name: "Like", foreign_key: "user_id", dependent: :destroy
     has_many :like_tags , through: :likes, source: :tag
     def like_tags_add(tag)
         #binding.pry
@@ -90,9 +90,17 @@ class User < ActiveRecord::Base
         following_users.include?(other_user)
     end
     
+    
+    #情報提供
     def feed_items(page)
         #ツイート一覧からユーザーidがフォローしているidに加えて自分のidも取り出す
         #配列で検索ってできるんや．．．．　　　where句つええ
         Micropost.page(page).where(user_id: following_user_ids + [self.id]).per(10)
+    end
+    
+    
+    #公式ニュース取得
+    def get_news(page)
+        Info.page(page).where(user_id: following_user_ids + [self.id]).per(10)
     end
 end

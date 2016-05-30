@@ -1,0 +1,36 @@
+<table class="table table-striped">
+    <thead>
+      <tr><th colspan="4"><%= @tag.name %>イラストを書くユーザー一覧</th></tr>
+    </thead>
+    <tbody>
+    <% #binding.pry %>
+    <% for i in 0..100 %>
+        <% break if @users[i]==nil %>
+        <tr>
+            <td class="col-sm-2">
+                <%= 
+                if @users[i][:avatar]==nil
+                  link_to gravatar_for(@users[i]), user_path(id:@users[i])
+                else 
+                  link_to image_tag(@users[i].avatar, :size => '80x80') , user_path(id:@users[i])
+                end %>
+            </td>
+            <td class="col-sm-2"><%= @users[i].name %> </td>
+            <td class="col-sm-4">フォロワー：<%= @users[i].follower_users.count %> </td>
+            <td class="col-sm-4">
+            <% if current_user.id != @users[i].id %>
+            <% @user = @users[i] %>
+              <div id="follow_form">
+                  <% if current_user.following?(@users[i]) %>
+                    <%= render 'users/unfollow' %>
+                  <% else %>
+                    <%= render 'users/follow' %>
+                  <% end %>
+              </div>
+            <% end %>
+            </td>
+        </tr>
+    <% end %>
+    </tr>
+</tbody>
+</table>

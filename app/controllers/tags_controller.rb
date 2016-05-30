@@ -1,6 +1,19 @@
 class TagsController < ApplicationController
   def show
-    #binding.pry
+    
+    if params["id"] != nil
+      @tag = Tag.find_by(id: params["id"])
+      @users = @tag.draw_users
+    else
+      #特にid指定がない場合はフォロワーが多いタグから順番に表示する
+      #タグidが指定されている場合はそのタグを登録している絵師さんを人気順に30こ表示する
+      @rank = Tag.all
+      @map = Hash.new
+      @rank.each do |tag|
+        @map[tag.id] = tag.draw_users.count
+      end
+      @tags = @map.sort_by{ |_, v| -v }
+    end
   end
 
   def new
@@ -22,7 +35,7 @@ class TagsController < ApplicationController
       flash[:success] = "#{@tag.name}を登録しました"
       redirect_to request.referer
     else
-      flash[:success] = "#{@tag.name}のURLを登録できませんでした"
+      flash[:success] = "#{@tag.name}　15文字いないで入力してください"
       redirect_to request.referer
     end
   end

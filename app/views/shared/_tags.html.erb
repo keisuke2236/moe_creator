@@ -1,1 +1,19 @@
-たくさんのタグ
+<table class="table table-striped">
+    <thead>
+      <tr><th colspan="3">登録タグ一覧</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+        <% #binding.pry %>
+    <% for i in 0..100 %>
+        <% break if @tags[i]==nil %>
+            <td class="col-sm-2"><%= link_to "#{Tag.find_by(id:@tags[i][0]).name}(#{@tags[i][1]})", tags_show_path(id: @tags[i][0]) %> </td>
+        <% i += 1 %>
+        <% if i % 5 == 0 && @tags[i]!=nil %>
+        </tr>
+        <tr>
+        <% end %>
+    <% end %>
+    </tr>
+</tbody>
+</table>
