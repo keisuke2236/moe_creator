@@ -5,7 +5,9 @@
       </tr>
     </thead>
 <tbody>
+    
     <% for i in 0..4 %>
+    
     <% break if @infos[i]==nil %>
         <tr>
             <% #binding.pry %>
@@ -21,7 +23,9 @@
             %>
             </td>
             <td class="col-sm-2"><%= link_to @user.name ,user_path(@user) %></td>
-            <td class="col-sm-8"><%= link_to @infos[i].text,@infos[i].link %></td>
+            <td class="col-sm-6"><%= link_to @infos[i].text,@infos[i].link %></td>
+            <% @date = @infos[0].created_at.to_date %>
+            <td class="col-sm-2"><%= @date.year.to_s + "年" + @date.month.to_s + "月" + @date.day.to_s + "日" %></td>
         </tr>
     <% end %>
 </tbody>

@@ -3,13 +3,13 @@ class UsersController < ApplicationController
   
   def show
     if logged_in?
+      
       @user = User.find(params[:id])
       @snss = Sns.where(user_id:current_user.id)
       @infos = Info.where(user_id: @user.id).order("created_at DESC")
       @micropost = current_user.microposts.build
       @microposts = Micropost.where(touser_id: @user.id).order("created_at DESC")
-      #binding.pry
-      @tags = @user.draw_tags
+      @tags = @user.draw_tags.order("created_at DESC").limit(10)
     else
       redirect_to login_url
     end

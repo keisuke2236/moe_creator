@@ -10,7 +10,7 @@
         </span>
         </th>
         <th colspan="3"><span class="col-md-4"><%= link_to "フォロー", following_user_path(@user) ,class: "btn btn-mini btn-info" %></span>
-                        <span class="col-md-4"><%= link_to "フォロワー", followers_user_path(@user) ,class: "btn btn-mini btn-info" %></span>
+                        <span class="col-md-4"><%= link_to "フォロワ", followers_user_path(@user) ,class: "btn btn-mini btn-info" %></span>
                         <span class="col-md-4"><%= render 'follow_form' if logged_in? %></span>
         </th>
       </tr>
@@ -22,11 +22,11 @@
       </tr>
 
       <tr>
-        <th scope="row">描くイラスト</th>
+        <th scope="row">描くイラスト<br />　最新10件</th>
         <td>
-        <% for i in 0..5 %>
+        <% for i in 0..9 %>
           <% break if @tags[i]==nil %>
-          <%= link_to @tags[i].name + "(" + @tags[0].draw_users.count.to_s + ")" , tags_show_path(id: @tags[i].id),class:"btn btn-info" %>
+          <%= link_to @tags[i].name + "(" + @tags[i].draw_users.count.to_s + ")" , tags_show_path(id: @tags[i].id),class:"btn btn-info" %>
         <% end %>
         </td>
       </tr>
