@@ -100,6 +100,6 @@ class User < ActiveRecord::Base
     
     #公式ニュース取得
     def get_news(page)
-        Info.page(page).where(user_id: following_user_ids + [self.id]).per(10)
+        Info.page(page).where(user_id: following_user_ids).per(10)
     end
 end
