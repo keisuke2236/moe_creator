@@ -1,9 +1,18 @@
 <span class="row">
   <span class="col-md-6">
-    <%= render 'profile' %>
+    <div class="col-md-12">
+      <% #画像とフォロワー %>
+      <%= render 'shared/user_info' %>
+    </div>
+    <div>基本情報</div>
+    <div class="col-md-12">
+      <% #基本情報 %>
+      <%= render 'profile' %>
+    </div>
   </span>
 
   <span class="col-md-4">
+    <% #公式ニュース %>
     <%= render 'news_info' %>
   </span>
 

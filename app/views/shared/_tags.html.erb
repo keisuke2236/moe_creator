@@ -4,7 +4,6 @@
     </thead>
     <tbody>
     <tr>
-        <% #binding.pry %>
     <% for i in 0..100 %>
         <% break if @tags[i]==nil %>
             <td class="col-sm-4"><%= link_to "#{Tag.find_by(id:@tags[i][0]).name}(#{@tags[i][1]})", tags_show_path(id: @tags[i][0]),class:"btn-success btn" %> </td>

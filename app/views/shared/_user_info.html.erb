@@ -9,7 +9,7 @@ end
 </div>
 
 
-<div class="col-sm-12">
+<div class="col-sm-12" style="text-align:center">
     <hr>
     <%= link_to "マイページ", current_user,class:"btn btn-info col-ms-4" %>
     <%= link_to "フォロー：" +  current_user.following_users.count.to_s, following_user_url(current_user), class: "btn btn-primary col-ms-4" %>
