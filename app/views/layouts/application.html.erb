@@ -17,9 +17,8 @@
 </script>
 
 </head>
-
 <% if @user != nil && !request.url.include?("users/new") && !request.url.include?("fun") %>
-    <% if @user[:bg] != nil %>
+    <% if @user[:picture] != nil %>
       <% #ある特定の人のページで @user=nil  で壁紙設定してる %>
         <body class="allbody" background="<%= @user.picture %>">
     <% #@userが壁紙設定してない %>
@@ -39,9 +38,8 @@
           </div>
         <% end %>
     <% end %>
-  
-
 <% else %>
+
   <% if logged_in? %>
     <% if current_user[:bg] != nil %>
       <% #ログインしてて壁紙設定してる %>
