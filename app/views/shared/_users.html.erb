@@ -15,12 +15,13 @@
                   link_to image_tag(@users[i].avatar, :size => '80x80') , user_path(id:@users[i])
                 end %>
             </td>
-            <td class="col-sm-2"><%= @users[i].name %> </td>
+            <td class="col-sm-2"><%= @users[i].name %></td>
             <td class="col-sm-4">フォロワー：<%= @users[i].follower_users.count %> </td>
             <td class="col-sm-4">
             <% if logged_in? && current_user.id != @users[i].id %>
             <% @user = @users[i] %>
-              <div id="follow_form">
+              <div id=<%= "follow_form#{@user.id}"%>>
+                <% #binding.pry %>
                   <% if current_user.following?(@users[i]) %>
                     <%= render 'users/unfollow' %>
                   <% else %>

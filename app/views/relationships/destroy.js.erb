@@ -1,1 +1,2 @@
-$("#follow_form").html("<%= escape_javascript(render('users/follow')) %>");
+<% #binding.pry%>
+$("#follow_form<%= params[:followed_id] %>").html("<%= escape_javascript(render('users/follow')) %>");

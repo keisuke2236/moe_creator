@@ -20,11 +20,7 @@
                 end
             %>
             </td>
-            <% if @infos[i].id==current_user.id %>
-                <td class="col-sm-2"><%= link_to "【自分の投稿】" ,user_path(@user) %></td>
-            <% else %>
-                <td class="col-sm-2"><%= link_to @user.name ,user_path(@user) %></td>
-            <% end %>
+            <td class="col-sm-2"><%= link_to @user.name ,user_path(@user) %></td>
             <td class="col-sm-8"><%= link_to @infos[i].text,@infos[i].link %></td>
         </tr>
     <% end %>

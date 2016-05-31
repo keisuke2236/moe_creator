@@ -1,1 +1,1 @@
-$("#follow_form").html("<%= escape_javascript(render('users/unfollow')) %>");
+$("#follow_form<%= params[:followed_id] %>").html("<%= escape_javascript(render('users/unfollow')) %>");

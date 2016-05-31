@@ -76,6 +76,7 @@ class User < ActiveRecord::Base
         #フォローリレーションからfollowed_idで検索　値はフォローするユーザのid
         #もしそのユーザーが存在しなかったらフォローする
         following_relationships.find_or_create_by(followed_id: other_user.id)
+        
     end
     
     #フォロー削除機能
