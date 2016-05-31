@@ -193,3 +193,73 @@ span.picture {
   background-attachment: fixed;
   background-size: 100% auto;
 }
+
+.select_box{
+  margin-top: 20%;
+  height: 350px;
+  background-color: rgba(255,255,255,0.9);
+}
+.select_box2{
+  margin-top: 20%;
+  height: 350px;
+  background-color: rgba(255,255,255,0.9);
+
+
+}
+
+.fun{
+  margin-top: 40px;
+}
+.creator{
+  margin-top: 20px;
+}
+.select_login{
+  margin-top: 60px;
+  height: 50px;
+  line-height: 38px;
+}
+
+
+.bgslideshow { position: fixed; left:0; top:0; z-index: -1; height: 100%; width: 100%; }  
+.bgslideshow img { position: absolute; min-height: 100%; min-width: 800px; width: 100%; height: auto;left:0; top:0; }
+
+#logo2 {
+  float: left;
+  margin-right: 10px;
+  font-size: 2.4em;
+  color: black;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+
+#logo3 {
+  text-align: center;
+  
+  float: left;
+  margin-right: 10px;
+  font-size: 5em;
+  color: black;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+#logo3 {
+  text-align: center;
+  
+  float: left;
+  margin-right: 10px;
+  font-size: 1em;
+  color: black;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+.select_box{
+  margin-top: 20%;
+  height: 350px;
+  background-color: rgba(255,255,255,0);
+}
+}

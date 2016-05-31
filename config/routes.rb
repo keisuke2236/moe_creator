@@ -49,11 +49,15 @@ Rails.application.routes.draw do
   
   
 
-  root to: 'static_pages#home'
+  root to: 'static_pages#redirecto'
+  get 'topPage', to:'static_pages#home', as: "top"
+  
   get 'sessions/new'
   get 'edit' , to: 'users#edit'
   #サインアップはnewメソッドで処理
   get 'signup',  to: 'users#new'
+  get 'fun_signup',  to: 'users#fun_new' ,as:"fun_new"
+  get 'select',  to: 'users#select' ,as:"select"
   #ログインはnewメソッドで同じく処理　した後　view/sessions/new.html.erb　で表示
   get 'login' , to: 'sessions#new'
   #post通信で loginが飛んできたら　セッションクラスのクリエイトで処理 view/sessions/create.html.erbで処理
@@ -72,6 +76,7 @@ Rails.application.routes.draw do
   resources :like_tags
   resources :draw_tags
   resources :infos
+  
   get 'users/:id/snss_edit', to: 'snss#edit', as: 'sns_edit'
   get 'users/:id/tags_edit', to: 'tags#new', as: 'tag_edit'
   get 'users/:id/infos_edit', to: 'infos#new', as: 'info_edit'

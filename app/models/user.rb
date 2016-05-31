@@ -98,7 +98,6 @@ class User < ActiveRecord::Base
         Micropost.page(page).where(user_id: following_user_ids + [self.id]).per(10)
     end
     
-    
     #公式ニュース取得
     def get_news(page)
         Info.page(page).where(user_id: following_user_ids + [self.id]).per(10)

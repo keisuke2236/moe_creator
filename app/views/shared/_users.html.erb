@@ -18,7 +18,7 @@
             <td class="col-sm-2"><%= @users[i].name %> </td>
             <td class="col-sm-4">フォロワー：<%= @users[i].follower_users.count %> </td>
             <td class="col-sm-4">
-            <% if current_user.id != @users[i].id %>
+            <% if logged_in? && current_user.id != @users[i].id %>
             <% @user = @users[i] %>
               <div id="follow_form">
                   <% if current_user.following?(@users[i]) %>
@@ -27,6 +27,8 @@
                     <%= render 'users/follow' %>
                   <% end %>
               </div>
+            <% elsif !logged_in? && i==0 %>
+              <%= link_to "会員登録してフォロー", select_path, class: "btn btn-mini btn-success fun" %>
             <% end %>
             </td>
         </tr>

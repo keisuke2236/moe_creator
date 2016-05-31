@@ -8,27 +8,50 @@ class UsersController < ApplicationController
       @infos = Info.where(user_id: @user.id).order("created_at DESC")
       @micropost = current_user.microposts.build
       @microposts = Micropost.where(touser_id: @user.id).order("created_at DESC")
+      #binding.pry
+      @tags = @user.draw_tags
     else
       redirect_to login_url
     end
   end
   
+  def select
+  end
   
   def new
     @user = User.new
   end
   
+  
+  def fun_new
+    @user = User.new
+    @user.creator = false;
+  end
+  
   def create
-    #binding.pry
-    #コントローラーから受け取った値user型をインスタンス変数に格納する
-    @user = User.new(user_params)
-    #ここのif分でprefixが呼ばれる
-    if @user.save
-      flash[:success] = "会員登録が完了しました，ログインしてください"
-      redirect_to @user
+    if request.referer.include?("fun")
+      @user = User.new(user_params)
+      @user.creator = false
+      if @user.save
+        flash[:success] = "会員登録が完了しました，ログインしてください"
+      else
+        flash[:success] = "すでに会員登録されているか，不正な値が入力されています"
+        redirect_to fun_new_url
+      end
     else
-      render 'new'
+      #コントローラーから受け取った値user型をインスタンス変数に格納する
+      @user = User.new(user_params)
+      @user.creator = true
+      #ここのif分でprefixが呼ばれる
+      if @user.save
+        flash[:success] = "会員登録が完了しました，ログインしてください"
+        redirect_to @user
+      else
+        flash[:success] = "すでに会員登録されているか，不正な値が入力されています"
+        redirect_to new_user_path
+      end
     end
+    
   end
   
   def edit

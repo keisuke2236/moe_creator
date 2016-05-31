@@ -5,7 +5,7 @@
         <%= if @user[:avatar]==nil 
           gravatar_for @user
         else 
-          image_tag @user.avatar, :size => '80x80' 
+          image_tag @user.avatar, :size => '80x80'
         end %>
         </span>
         </th>
@@ -22,9 +22,12 @@
       </tr>
 
       <tr>
-        <th scope="row">ジャンル</th>
+        <th scope="row">描くイラスト</th>
         <td>
-          萌え
+        <% for i in 0..5 %>
+          <% break if @tags[i]==nil %>
+          <%= link_to @tags[i].name + "(" + @tags[0].draw_users.count.to_s + ")" , tags_show_path(id: @tags[i].id),class:"btn btn-info" %>
+        <% end %>
         </td>
       </tr>
 
@@ -33,7 +36,7 @@
         <td>
         <% for i in 0..5 %>
           <% break if @snss[i]==nil %>
-          <a href="<%= @snss[i].url %>"><%= @snss[i].name %></a>
+          <%= link_to @snss[i].name , @snss[i].url ,class: "btn btn-success"%>
         <% end %>
         </td>
       </tr>

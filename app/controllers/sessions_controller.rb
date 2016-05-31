@@ -11,8 +11,13 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       #後で表示できるようにflash変数に文字列を入れておきます　:infoを紐付けることで情報として表示（スタイルが）
       flash[:info] = "#{@user.name}さんでログインしています"
-      #そのユーザーのページへ移動する
-      redirect_to @user
+      #binding.pry
+      if @user.creator
+        #そのユーザーのページへ移動する
+        redirect_to @user
+      else
+        redirect_to root_path
+      end
     else
       flash[:danger] = "メアドかパスワードが間違っています"
       render 'new'

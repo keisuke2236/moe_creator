@@ -1,15 +1,15 @@
 <table class="table table-striped">
     <thead>
-      <tr><th colspan="3">登録タグ一覧</th></tr>
+      <tr><th colspan="3" style="font-size:2em">人気のタグでクリエイターをみつける</th></tr>
     </thead>
     <tbody>
     <tr>
         <% #binding.pry %>
     <% for i in 0..100 %>
         <% break if @tags[i]==nil %>
-            <td class="col-sm-2"><%= link_to "#{Tag.find_by(id:@tags[i][0]).name}(#{@tags[i][1]})", tags_show_path(id: @tags[i][0]) %> </td>
+            <td class="col-sm-4"><%= link_to "#{Tag.find_by(id:@tags[i][0]).name}(#{@tags[i][1]})", tags_show_path(id: @tags[i][0]),class:"btn-success btn" %> </td>
         <% i += 1 %>
-        <% if i % 5 == 0 && @tags[i]!=nil %>
+        <% if i % 3 == 0 && @tags[i]!=nil %>
         </tr>
         <tr>
         <% end %>

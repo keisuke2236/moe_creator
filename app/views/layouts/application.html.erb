@@ -5,20 +5,89 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript">  
+  $(function(){
+    $('.bgslideshow img:gt(0)').hide();
+    setInterval(function() {
+      $('.bgslideshow :first-child').fadeOut(5000)  
+        .next('img').fadeIn(5000)  
+      .end().appendTo('.bgslideshow');  
+    },30000);
+  });  
+</script>
+
 </head>
 
-<% #binding.pry %>
-<% if @user != nil %>
-  <body class="allbody" background="<%= @user.picture %>">
+<% if @user != nil && !request.url.include?("users/new") && !request.url.include?("fun") %>
+    <% if @user[:bg] != nil %>
+      <% #ある特定の人のページで @user=nil  で壁紙設定してる %>
+        <body class="allbody" background="<%= @user.picture %>">
+    <% #@userが壁紙設定してない %>
+    <% else %>
+      <body>
+        <% if request.user_agent.include?("Android") || request.user_agent.include?("iPhone")|| request.user_agent.include?("iPad")|| request.user_agent.include?("Kindle") %>
+          <div class="bgslideshow">
+            <%= image_tag("m1.jpg") %>
+            <%= image_tag("m2.jpg") %>
+            <%= image_tag("m3.jpg") %>
+          </div>  
+        <% else %>
+          <div class="bgslideshow">
+            <%= image_tag("1.jpg") %>
+            <%= image_tag("2.jpg") %>
+            <%= image_tag("3.jpg") %>
+          </div>
+        <% end %>
+    <% end %>
+  
+
 <% else %>
   <% if logged_in? %>
-    <body class="allbody" background="<%= current_user.bg %>">
+    <% if current_user[:bg] != nil %>
+      <% #ログインしてて壁紙設定してる %>
+      <body class="allbody" background="<%= current_user.bg %>">
+  
+    <% #ログインしてるけど壁紙設定してないならデフォルト %>
+    <% else %>
+        <% if request.user_agent.include?("Android") || request.user_agent.include?("iPhone")|| request.user_agent.include?("iPad")|| request.user_agent.include?("Kindle") %>
+          <div class="bgslideshow">
+            <%= image_tag("m1.jpg") %>
+            <%= image_tag("m2.jpg") %>
+            <%= image_tag("m3.jpg") %>
+          </div>  
+        <% else %>
+          <div class="bgslideshow">
+            <%= image_tag("1.jpg") %>
+            <%= image_tag("2.jpg") %>
+            <%= image_tag("3.jpg") %>
+          </div>
+        <% end %>
+    <% end %>
+  
+  <% #ログインしてないならデフォルト壁紙 %>
   <% else %>
-    <body>
+    <% if request.user_agent.include?("Android") || request.user_agent.include?("iPhone")|| request.user_agent.include?("iPad")|| request.user_agent.include?("Kindle") %>
+      <div class="bgslideshow">
+        <%= image_tag("m1.jpg") %>
+        <%= image_tag("m2.jpg") %>
+        <%= image_tag("m3.jpg") %>
+      </div>  
+    <% else %>
+      <div class="bgslideshow">
+        <%= image_tag("1.jpg") %>
+        <%= image_tag("2.jpg") %>
+        <%= image_tag("3.jpg") %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
+
  <%= render 'layouts/header' %>
+ <% if request.url.include?("select")||request.url.include?("topPage") %>
+  <div class="container">
+ <% else %>
   <div class="container pageContents">
+ <% end %>
     <% flash.each do |message_type, message| %> 
       <div class="alert alert-<%= message_type %>"><%= message %></div>
     <% end %>
