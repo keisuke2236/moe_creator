@@ -8,7 +8,6 @@
 <div class="form-group">
     <label for="message_name" class="control-label col-md-2">名前</label>
     <div class="col-md-10"><%= f.text_field:name, :class => "form-control" %></div>
-    
     <label for="message_avatar" class="control-label col-md-2">アバター</label>
     <div class="col-md-10"><%= f.file_field :avatar %></div>
     <label for="message_picture" class="control-label col-md-2">マイページ背景</label>
@@ -27,7 +26,8 @@
     <div class="col-md-10"><%= f.text_field:password, :class => "form-control" %></div>
     <label for="message_password_confirmation" class="control-label col-md-2">再入力</label>
     <div class="col-md-10"><%= f.text_field:password_confirmation, :class => "form-control" %></div>
-    <%= f.submit :class => "btn btn-success button1 col-md-10 col-md-offset-1" %>
+    <%= f.submit "保存する", :class => "btn btn-success button1 col-md-10 col-md-offset-1" %>
+
 </div>
 <% end %>
   </div>

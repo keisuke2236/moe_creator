@@ -1,12 +1,17 @@
+<div class="col-sm-12" style="text-align:center;">
 <%= 
 if current_user[:avatar]==nil 
-    link_to gravatar_for(current_user, size: 50), current_user
+    link_to gravatar_for(current_user, size: 90), current_user
 else 
-    link_to (image_tag current_user.avatar, :size => '50x50'), current_user
+    link_to (image_tag current_user.avatar, :size => '150'), current_user
 end
 %>
-<h1><%= current_user.name %></h1>
-<span><%= link_to "マイページ", current_user %></span>
-<span><%= "情報提供数：" + current_user.microposts.count.to_s %></span>
-<span><%= link_to "フォロー：" +  current_user.following_users.count.to_s, following_user_url(current_user) %></span>
-<span><%= link_to "フォロワー：" +  current_user.follower_users.count.to_s, followers_user_url(current_user) %></span>
+</div>
+
+
+<div class="col-sm-12">
+    <hr>
+    <%= link_to "マイページ", current_user,class:"btn btn-info col-ms-4" %>
+    <%= link_to "フォロー：" +  current_user.following_users.count.to_s, following_user_url(current_user), class: "btn btn-primary col-ms-4" %>
+    <%= link_to "フォロワ：" +  current_user.follower_users.count.to_s, followers_user_url(current_user), class: "btn btn-primary col-ms-4" %>
+</div>
