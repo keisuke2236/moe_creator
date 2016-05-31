@@ -33,7 +33,8 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
       @user.creator = false
       if @user.save
-        flash[:success] = "会員登録が完了しました，ログインしてください"
+        flash[:success] = "#{@user.name}さんの会員登録が完了しました，ログインしてください"
+        redirect_to login_url
       else
         flash[:success] = "すでに会員登録されているか，不正な値が入力されています"
         redirect_to fun_new_url
@@ -44,8 +45,8 @@ class UsersController < ApplicationController
       @user.creator = true
       #ここのif分でprefixが呼ばれる
       if @user.save
-        flash[:success] = "会員登録が完了しました，ログインしてください"
-        redirect_to @user
+        flash[:success] = "#{@user.name}さんの会員登録が完了しました，ログインしてください"
+        redirect_to login_url
       else
         flash[:success] = "すでに会員登録されているか，不正な値が入力されています"
         redirect_to new_user_path
