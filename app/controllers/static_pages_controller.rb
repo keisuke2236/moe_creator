@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
       @micropost = current_user.microposts.build
       
       #自分に関係ある情報提供一覧
+      #binding.pry
       @feed_items = current_user.feed_items(params[:page]).includes(:user).order(created_at: :desc)
       #フォロー絵師の最新ニュースフィード
       @infos = current_user.get_news(params[:page]).order(created_at: :desc)
