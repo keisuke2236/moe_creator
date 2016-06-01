@@ -27,7 +27,6 @@ for i in 0..@users.count-1 do
         else
             @tag = Tag.create(:name => @tags[i][i2])
         end
-        binding.pry
         Draw.create(user_id: @user.id,tag_id: @tag.id)
     end
 end
