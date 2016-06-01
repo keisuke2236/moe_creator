@@ -1,0 +1,17 @@
+<div class="col-sm-12" style="text-align:center;">
+<%= 
+if @user[:avatar]==nil 
+    link_to gravatar_for(@user, size: 90), @user
+else 
+    link_to (image_tag @user.avatar, :size => '150'), @user
+end
+%>
+</div>
+
+
+<div class="col-sm-12" style="text-align:center">
+    <hr>
+    <%= link_to "マイページ", @user,class:"btn btn-info col-ms-4" %>
+    <%= link_to "フォロー：" +  @user.following_users.count.to_s, following_user_url(@user), class: "btn btn-primary col-ms-4" %>
+    <%= link_to "フォロワ：" +  @user.follower_users.count.to_s, followers_user_url(@user), class: "btn btn-primary col-ms-4" %>
+</div>
