@@ -48,7 +48,6 @@ class User < ActiveRecord::Base
     has_many :draw_tags, through: :draws, source: :tag
     
     def draw_tags_add(tag)
-        #binding.pry
         draws.find_or_create_by(tag: tag)
     end
     def draw_tags_del(tag)
