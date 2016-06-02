@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>もえくり</title>
-
+  <meta name=viewport content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   
@@ -20,6 +20,7 @@
 
 </head>
 <% if @user != nil && !request.url.include?("users/new") && !request.url.include?("fun") %>
+<% binding.pry %>
     <% if @user[:picture] != nil %>
       <% #ある特定の人のページで @user=nil  で壁紙設定してる %>
         <% if request.user_agent.include?("Android") || request.user_agent.include?("iPhone")|| request.user_agent.include?("iPad")|| request.user_agent.include?("Kindle") %>
@@ -99,7 +100,11 @@
   <% end %>
 <% end %>
 
+
  <%= render 'layouts/header' %>
+ <%= render 'layouts/headerm' %>
+
+
  <% if request.url.include?("select")||request.url.include?("topPage") %>
   <div class="container">
  <% else %>
@@ -110,7 +115,7 @@
     <% end %>
     <%= yield %>
   </div>
-  <% #binding.pry %>
+
 </body>
 </html>
 

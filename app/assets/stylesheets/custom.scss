@@ -3,6 +3,7 @@
 
 /* universal */
 
+
 body {
   padding-top: 60px;
 }
@@ -243,4 +244,20 @@ span.picture {
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
+}
+.tag_view{
+  height: 400px;
+  width: 18%;
+  background-position:center;
+  background-repeat: no-repeat;
+  -moz-background-size:cover;
+  background-size:cover;
+}
+.tag_view > a > div{
+    width: 111%;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin-top: 300px;
+    margin-left: -10px;
+    font-size:30px;
 }

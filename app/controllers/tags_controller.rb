@@ -16,6 +16,7 @@ class TagsController < ApplicationController
         i = i + 1
       end
       
+      @user = @users.first
     else
       #特にid指定がない場合はフォロワーが多いタグから順番に表示する
       #タグidが指定されている場合はそのタグを登録している絵師さんを人気順に30こ表示する

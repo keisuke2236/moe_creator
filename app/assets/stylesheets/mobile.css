@@ -1,0 +1,28 @@
+@media (min-width: 768px) {
+    .mobile_true{
+         display:none;
+         
+    }
+}
+
+@media (max-width: 768px) {
+    body{
+        
+    }
+    .mobile_none{
+         display:none;
+    }
+    
+    
+    nav > ul li{
+      clear:both;
+      display: inline-block;
+    }
+    nav{
+        display: inline-block;
+    }
+    .container{
+        
+    }
+
+}
