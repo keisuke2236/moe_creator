@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
     validates :age , numericality: {greater_than_or_equal_to:0} , presence: false, on: :update
     
     mount_uploader :avatar, AvatarUploader
+    mount_uploader :work, WorkUploader
     mount_uploader :picture, PictureUploader
     mount_uploader :bg, BgUploader
     

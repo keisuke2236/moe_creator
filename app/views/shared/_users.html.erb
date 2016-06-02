@@ -6,18 +6,35 @@
     <% #binding.pry %>
     <% for i in 0..100 %>
         <% break if @users[i]==nil %>
-        <tr>
-            <td class="col-sm-2">
+        <tr style="vertical-align:middle;">
+            <td class="col-sm-2" style="vertical-align:middle;">
                 <%= 
                 if @users[i][:avatar]==nil
                   link_to gravatar_for(@users[i]), user_path(id:@users[i])
                 else 
-                  link_to image_tag(@users[i].avatar, :size => '80x80') , user_path(id:@users[i])
+                  link_to image_tag(@users[i].avatar, :size => '120x120') , user_path(id:@users[i])
                 end %>
             </td>
-            <td class="col-sm-2"><%= @users[i].name %></td>
-            <td class="col-sm-4">フォロワー：<%= @users[i].follower_users.count %> </td>
-            <td class="col-sm-4">
+            <% #binding.pry %>
+            <td class="col-sm-3" style="font-size:20px; vertical-align:middle;"><%= @users[i].name %><br/>
+            フォロワー：<%= @users[i].follower_users.count %><br />
+            
+            <% #最新情報 %>
+            <% @info = Info.where(user_id:@users[i].id).last %>
+            <% if @info != nil %>
+              <% if @info.text != nil && @info.link != nil %>
+                <%= link_to @info.text ,@info.link %>
+              <% end %>
+            <% end %>
+            
+            </td>
+            <td class="col-sm-3" style="vertical-align:middle;">
+              <% if @users[i].work != nil %>
+                <%= image_tag(@users[i].work, :size => '225x150','data-action' => "zoom") %> 
+              <% end %>
+            </td>
+            
+            <td class="col-sm-3" style="vertical-align:middle;">
             <% if logged_in? && current_user.id != @users[i].id %>
             <% @user = @users[i] %>
               <div id=<%= "follow_form#{@user.id}"%>>

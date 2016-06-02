@@ -93,7 +93,7 @@ class UsersController < ApplicationController
   private
   def user_params
     #binding.pry
-    params.require(:user).permit(:name, :avatar , :picture, :bg , :area ,:age ,:email ,:hp, :password, :password_confirmation)
+    params.require(:user).permit(:name, :avatar , :picture, :work , :bg , :area ,:age ,:email ,:hp, :password, :password_confirmation)
   end
   
   def user_check

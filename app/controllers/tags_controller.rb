@@ -1,9 +1,21 @@
 class TagsController < ApplicationController
   def show
-    
     if params["id"] != nil
       @tag = Tag.find_by(id: params["id"])
-      @users = @tag.draw_users
+      @user = @tag.draw_users
+      @map = Hash.new
+      @user.each do |user|
+        @map[user] = user.follower_users.count
+      end
+      @user = @map.sort_by{ |_, v| -v }
+      
+      @users = []
+      i = 0
+      @user.each do |user|
+        @users[i] = @user[i][0]
+        i = i + 1
+      end
+      
     else
       #特にid指定がない場合はフォロワーが多いタグから順番に表示する
       #タグidが指定されている場合はそのタグを登録している絵師さんを人気順に30こ表示する
@@ -15,7 +27,6 @@ class TagsController < ApplicationController
       @tags = @map.sort_by{ |_, v| -v }
     end
   end
-
   def new
     #背景を入れたいので@userを定義
     @user = current_user

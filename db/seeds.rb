@@ -29,10 +29,10 @@ for i in 0..@users.count-1 do
     
     @avatar = File.new(File.join(Rails.root, "app/assets/images/default_avatar/"+@users[i][1]+"_a.jpg"))
     @picture = File.new(File.join(Rails.root, "app/assets/images/default_picture/"+@users[i][1]+"_p.jpg"))
-    @user = User.create(name: @users[i][0],email: @users[i][1]+'@gmail.com',avatar: @avatar,picture: @picture ,age: 1 ,password: "ko",creator: true)
+    @work = File.new(File.join(Rails.root, "app/assets/images/default_work/"+@users[i][1]+"_w.jpg"))
+    @user = User.create(name: @users[i][0],email: @users[i][1]+'@gmail.com',avatar: @avatar,work: @work,picture: @picture ,age: 1 ,password: "ko",creator: true)
     
     for i2 in 0..@tags[i].count-1
-        #binding.pry
         if Tag.find_by(name: @tags[i][i2])!=nil
             @tag = Tag.find_by(name: @tags[i][i2])
         else
