@@ -13,7 +13,7 @@
             <% #binding.pry %>
             <% @user = User.find_by(id:@infos[i].user_id) %>
             
-            <td class="col-sm-2">
+            <td rowspan="2" class="col-sm-2">
             <%= 
                 if @user[:avatar]==nil 
                     link_to gravatar_for(@user, size: 40), @user
@@ -21,12 +21,16 @@
                     link_to image_tag(@user.avatar,:size => "40x40", :alt => "アイコン") ,user_path(@user)
                 end
             %>
+            <br />
+            <%= link_to @user.name ,user_path(@user) %>
             </td>
-            <td class="col-sm-2"><%= link_to @user.name ,user_path(@user) %></td>
+            
             <td class="col-sm-6"><%= link_to @infos[i].text,@infos[i].link %></td>
             <% @date = @infos[0].created_at.to_datetime+Rational(9, 24) %>
-            <td class="col-sm-2"><%= @date.year.to_s + "年" + @date.month.to_s + "月" + @date.day.to_s + "日" %><br/>
-            <%= @date.hour.to_s + "時" + @date.min.to_s + "分" %></td>
+            <tr>
+            <td colspan="2"><%= @date.year.to_s + "年" + @date.month.to_s + "月" + @date.day.to_s + "日"+ @date.hour.to_s + "時" + @date.min.to_s + "分" %>
+             </td>
+            </tr>
         </tr>
     <% end %>
 </tbody>

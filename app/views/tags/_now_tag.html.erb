@@ -1,20 +1,6 @@
-<table class="table table-striped">
-    <thead>
-      <tr><th colspan="3">登録タグ一覧</th></tr>
-    </thead>
-    <tbody>
-    <tr>
-    <% #binding.pry %>
-    <% for i in 0..100 %>
-        <% break if @tags[i]==nil %>
-            <td class="col-sm-2"><%= link_to @tags[i].name, tags_show_path(id: @tags[i].id) %> </td>
-            <td class="col-sm-1"><%= link_to '削除',tags_destroy_path(:del_id => @tags[i].id), :method => :delete , :class => 'btn btn-danger' %></td>
-        <% i += 1 %>
-        <% if i % 3 == 0 && @tags[i]!=nil %>
-        </tr>
-        <tr>
-        <% end %>
-    <% end %>
-    </tr>
-</tbody>
-</table>
+<div style="font-size:1.5em; text-align:center;">登録タグの削除<div>
+<% for i in 0..100 %>
+    <% break if @tags[i]==nil %>
+    <% #link_to @tags[i].name, tags_show_path(id: @tags[i].id) %>
+    <%= link_to @tags[i].name ,tags_destroy_path(:del_id => @tags[i].id), :method => :delete , :class => 'btn btn-danger col-xs-12 col-lg-4  col-sm-6',:style=>"margin-top:2px;", data: {confirm: "#{@tags[i].name}を本当に削除しますか？"} %>
+<% end %>

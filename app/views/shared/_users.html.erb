@@ -1,56 +1,51 @@
-<table class="table table-striped">
-    <thead>
-      <tr><th colspan="4"><%= @tag.name %>イラストを書くユーザー一覧</th></tr>
-    </thead>
-    <tbody>
-    <% #binding.pry %>
+ <div style="text-align:center; font-size:2em;"><hr><%= @tag.name %>を描く絵師<div>
     <% for i in 0..100 %>
-        <% break if @users[i]==nil %>
-        <tr style="vertical-align:middle;">
-            <td class="col-sm-2" style="vertical-align:middle;">
-                <%= 
-                if @users[i][:avatar]==nil
-                  link_to gravatar_for(@users[i]), user_path(id:@users[i])
-                else 
-                  link_to image_tag(@users[i].avatar, :size => '120x120') , user_path(id:@users[i])
-                end %>
-            </td>
-            <% #binding.pry %>
-            <td class="col-sm-3" style="font-size:20px; vertical-align:middle;"><%= @users[i].name %><br/>
-            フォロワー：<%= @users[i].follower_users.count %><br />
-            
-            <% #最新情報 %>
-            <% @info = Info.where(user_id:@users[i].id).last %>
-            <% if @info != nil %>
-              <% if @info.text != nil && @info.link != nil %>
-                <%= link_to @info.text ,@info.link %>
-              <% end %>
-            <% end %>
-            
-            </td>
-            <td class="col-sm-3" style="vertical-align:middle;">
-              <% if @users[i].work != nil %>
-                <%= image_tag(@users[i].work, :size => '225x150','data-action' => "zoom") %> 
-              <% end %>
-            </td>
-            
-            <td class="col-sm-3" style="vertical-align:middle;">
-            <% if logged_in? && current_user.id != @users[i].id %>
-            <% @user = @users[i] %>
-              <div id=<%= "follow_form#{@user.id}"%>>
-                <% #binding.pry %>
-                  <% if current_user.following?(@users[i]) %>
-                    <%= render 'users/unfollow' %>
-                  <% else %>
-                    <%= render 'users/follow' %>
-                  <% end %>
-              </div>
-            <% elsif !logged_in? && i==0 %>
-              <%= link_to "会員登録してフォロー", select_path, class: "btn btn-mini btn-success fun" %>
-            <% end %>
-            </td>
-        </tr>
+    <hr />
+    <% #ユーザーアバター %>
+    <div class="col-xs-3 myprof">
+    <% break if @users[i]==nil %>
+    <%= 
+      if @users[i][:avatar]==nil
+        link_to gravatar_for(@users[i]), user_path(id:@users[i])
+      else 
+        link_to image_tag(@users[i].avatar,:style => "", :style => "width:100%;height:auto;") , user_path(id:@users[i])
+    end %>
+    <br />
+    <%= link_to @users[i].name , user_path(id:@users[i]),:class => "string" %><br/>
+    </div>
+    
+    <% #タグ %>
+    
+    <div class="col-xs-9">
+    <% if @users[i].work != nil %>
+      <%= image_tag(@users[i].work,'data-action' => "zoom", :style => "width:100%;height:auto;") %> 
     <% end %>
-    </tr>
-</tbody>
-</table>
+    </div>
+    <div class="col-xs-12 mobile_none">
+      <% #最新情報 %>
+      <% @info = Info.where(user_id:@users[i].id).last %>
+      <% if @info != nil %>
+        <% if @info.text != nil && @info.link != nil %>
+          <%= link_to @info.text ,@info.link,:class=>"btn btn-success",:style=>"width:70%;" %>
+         <% end %>
+      <% end %>
+    </div>
+    
+
+
+  
+       <% if logged_in? && current_user.id != @users[i].id %>
+       <% @user = @users[i] %>
+        <div id=<%= "follow_form#{@user.id}"%>>
+          <% #binding.pry %>
+             <% if current_user.following?(@users[i]) %>
+              <%= render 'users/unfollow' %>
+             <% else %>
+              <%= render 'users/follow' %>
+            <% end %>
+        </div>
+      <% elsif !logged_in? && i==0 %>
+         <%= link_to "会員登録してフォロー", select_path, class: "btn btn-mini btn-success fun" %>
+      <% end %>
+  
+<% end %>

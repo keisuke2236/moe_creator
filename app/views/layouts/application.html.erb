@@ -20,13 +20,12 @@
 
 </head>
 <% if @user != nil && !request.url.include?("users/new") && !request.url.include?("fun") %>
-<% binding.pry %>
     <% if @user[:picture] != nil %>
       <% #ある特定の人のページで @user=nil  で壁紙設定してる %>
         <% if request.user_agent.include?("Android") || request.user_agent.include?("iPhone")|| request.user_agent.include?("iPad")|| request.user_agent.include?("Kindle") %>
           <body>
           <div class="bgslideshow">
-            <%= image_tag("m1.jpg") %>
+            <%= image_tag("m1.jpg",:class=>"height:100px;") %>
             <%= image_tag("m2.jpg") %>
             <%= image_tag("m3.jpg") %>
           </div>  
@@ -106,7 +105,7 @@
 
 
  <% if request.url.include?("select")||request.url.include?("topPage") %>
-  <div class="container">
+  <div class="container" style="overflow-y:hidden;">
  <% else %>
   <div class="container pageContents">
  <% end %>

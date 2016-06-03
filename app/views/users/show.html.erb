@@ -13,7 +13,7 @@
 
   <span class="col-md-4">
     <% if @user.work != nil %>
-      <%= image_tag(@user.work, :size => '425x300','data-action' => "zoom") %> 
+      <%= image_tag(@user.work,'data-action' => "zoom", style: 'height:auto;width:90%;') %> 
     <% end %>
     <% #公式ニュース %>
     <%= render 'news_info' %>

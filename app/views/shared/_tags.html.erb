@@ -1,28 +1,20 @@
-<table class="table-striped">
-    <thead>
-      <tr><th colspan="6" style="font-size:2em;text-align:center;"><hr>今日のPick Up!!<hr></th></tr>
-    </thead>
-    <tbody>
-    <tr colspan="6" class="mobile_none">
-        <% for i in 0..5 %>
-        <% if i == 0 %><td class="tag_view" background="<%= User.find_by(id:1).picture %>"><a href=<%= tags_show_path(id: @tags[i][0]) %>> <div>ロリ</div></a></td><% end %>
-        <% if i == 1 %><td class="tag_view" background="<%= User.find_by(id:2).picture %>"><a href=<%= tags_show_path(id: @tags[i][0]) %>> <div>和服</div></a></td><% end %>
-        <% if i == 2 %><td class="tag_view" background="<%= User.find_by(id:3).picture %>"><a href=<%= tags_show_path(id: @tags[i][0]) %>> <div>アニメ</div></a></td><% end %>
-        <% if i == 3 %><td class="tag_view" background="<%= User.find_by(id:4).picture %>"><a href=<%= tags_show_path(id: @tags[i][0]) %>> <div>艦これ</div></a></td><% end %>
-        <% if i == 4 %><td class="tag_view" background="<%= User.find_by(id:5).picture %>"><a href=<%= tags_show_path(id: @tags[i][0]) %>> <div>イベント</div></a></td><% end %>
-        <% if i == 5 %><td class="tag_view" background="<%= User.find_by(id:6).picture %>"><a href=<%= tags_show_path(id: @tags[i][0]) %>> <div>エロゲ</div></a></td><% end %>
-        <% end %>
-    </tr>
-    <tr>
-    <% for i in 0..50 %>
+<div style="font-size:2em; text-align:center;"><hr>今日のピックアップタグ<hr></div>
+
+<a href="tags/show?id=89"><div class="tag_view2 tag_view"><div>オリジナル</div></div></a>
+<a href="tags/show?id=2"><div class="tag_view1 tag_view"><div>ロリ</div></div></a>
+<a href="tags/show?id=45"><div class="tag_view3 tag_view"><div>艦これ</div></div></a>
+<a href="tags/show?id=92"><div class="tag_view4 tag_view"><div>靴下</div></div></a>
+<a href="tags/show?id=38"><div class="tag_view5 tag_view"><div>白タイツ</div></div></a>
+<a href="tags/show?id=1"><div class="tag_view6 tag_view mobile_only"><div>季節絵</div></div></a>
+
+
+
+
+<% for i in 0..100 %>
         <% break if @tags[i]==nil %>
-            <td colspan="2" class="col-sm-4"><%= link_to "#{Tag.find_by(id:@tags[i][0]).name}(#{@tags[i][1]})", tags_show_path(id: @tags[i][0]),class:"btn-success btn" %> </td>
+        <%= link_to "#{Tag.find_by(id:@tags[i][0]).name}(#{@tags[i][1]})", tags_show_path(id: @tags[i][0]),class:"btn-success btn" %>
         <% i += 1 %>
         <% if i % 3 == 0 && @tags[i]!=nil %>
-        </tr>
-        <tr>
         <% end %>
-    <% end %>
-    </tr>
-</tbody>
-</table>
+<% end %>
+    
