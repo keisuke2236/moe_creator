@@ -9,6 +9,9 @@
     .pc_none{
          display:none;
     }
+    .select_box{
+        height:400px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -27,19 +30,21 @@
     .tag_view{
         display: inline-block;
         height: 200px;
-        margin: -2px;
+        margin: 2px;
         padding: 0px;
-        width: 33.3%;
+        width: 30.3%;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
+        overflow: hidden;
     }
+    
     .tag_view1{background-image:image-url("default_picture/texinkuru_p.jpg");}
     .tag_view2{background-image:image-url("default_picture/fujima_p.jpg");}
-    .tag_view3{background-image:image-url("hibiki.jpg");}
-    .tag_view4{background-image:image-url("kutusita.jpg");}
-    .tag_view5{background-image:image-url("siro.jpg");}
-    .tag_view6{background-image:image-url("default_picture/asaiumi_p.jpg");}
+    .tag_view3{background-image:image-url("default_work/karory_w.jpg");}
+    .tag_view4{background-image:image-url("default_work/sakura_w.jpg");}
+    .tag_view5{background-image:image-url("default_work/kami_w.jpg");}
+    .tag_view6{background-image:image-url("default_work/matarou_w.jpg");}
 
 
     .string{
@@ -52,6 +57,7 @@
         text-shadow: 2px 2px #fff, 3px 3px rgba(0, 0, 0, 0.15);
     }
     .tag_view > .nam {
+        overflow: hidden;
         width: 100%;
         height: 20px;
         background-color: gray;

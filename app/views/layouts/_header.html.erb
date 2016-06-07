@@ -6,7 +6,6 @@
         <li><%= link_to "ホーム", root_path %></li>
         <li><%= link_to "タグで探す", tags_show_url %></li>
         
-        
         <% #binding.pry %>
         <% if logged_in? && current_user.creator == true %>
           <% #ユーザーメニュー  %>
