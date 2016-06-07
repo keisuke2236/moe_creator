@@ -25,9 +25,9 @@
         <% if request.user_agent.include?("Android") || request.user_agent.include?("iPhone")|| request.user_agent.include?("iPad")|| request.user_agent.include?("Kindle") %>
           <body>
           <div class="bgslideshow">
-            <%= image_tag("m1.jpg",:class=>"height:100px;") %>
-            <%= image_tag("m2.jpg") %>
-            <%= image_tag("m3.jpg") %>
+            <%= image_tag("m1.jpg",:class=>"mobile_pic") %>
+            <%= image_tag("m2.jpg",:class=>"mobile_pic") %>
+            <%= image_tag("m3.jpg",:class=>"mobile_pic") %>
           </div>  
           <% else %>
             <body class="allbody" background="<%= @user.picture %>">
@@ -37,9 +37,9 @@
       <body>
         <% if request.user_agent.include?("Android") || request.user_agent.include?("iPhone")|| request.user_agent.include?("iPad")|| request.user_agent.include?("Kindle") %>
           <div class="bgslideshow">
-            <%= image_tag("m1.jpg") %>
-            <%= image_tag("m2.jpg") %>
-            <%= image_tag("m3.jpg") %>
+            <%= image_tag("m1.jpg",:class=>"mobile_pic") %>
+            <%= image_tag("m2.jpg",:class=>"mobile_pic") %>
+            <%= image_tag("m3.jpg",:class=>"mobile_pic") %>
           </div>  
         <% else %>
           <div class="bgslideshow">
@@ -57,9 +57,9 @@
         <% if request.user_agent.include?("Android") || request.user_agent.include?("iPhone")|| request.user_agent.include?("iPad")|| request.user_agent.include?("Kindle") %>
           <body>
           <div class="bgslideshow">
-            <%= image_tag("m1.jpg") %>
-            <%= image_tag("m2.jpg") %>
-            <%= image_tag("m3.jpg") %>
+            <%= image_tag("m1.jpg",:class=>"mobile_pic") %>
+            <%= image_tag("m2.jpg",:class=>"mobile_pic") %>
+            <%= image_tag("m3.jpg",:class=>"mobile_pic") %>
           </div>  
           <% else %>
         <body class="allbody" background="<%= current_user.bg %>">
@@ -68,9 +68,9 @@
     <% else %>
         <% if request.user_agent.include?("Android") || request.user_agent.include?("iPhone")|| request.user_agent.include?("iPad")|| request.user_agent.include?("Kindle") %>
           <div class="bgslideshow">
-            <%= image_tag("m1.jpg") %>
-            <%= image_tag("m2.jpg") %>
-            <%= image_tag("m3.jpg") %>
+            <%= image_tag("m1.jpg",:class=>"mobile_pic") %>
+            <%= image_tag("m2.jpg",:class=>"mobile_pic") %>
+            <%= image_tag("m3.jpg",:class=>"mobile_pic") %>
           </div>  
         <% else %>
           <div class="bgslideshow">
@@ -85,9 +85,9 @@
   <% else %>
     <% if request.user_agent.include?("Android") || request.user_agent.include?("iPhone")|| request.user_agent.include?("iPad")|| request.user_agent.include?("Kindle") %>
       <div class="bgslideshow">
-        <%= image_tag("m1.jpg") %>
-        <%= image_tag("m2.jpg") %>
-        <%= image_tag("m3.jpg") %>
+        <%= image_tag("m1.jpg",:class=>"mobile_pic") %>
+        <%= image_tag("m2.jpg",:class=>"mobile_pic") %>
+        <%= image_tag("m3.jpg",:class=>"mobile_pic") %>
       </div>  
     <% else %>
       <div class="bgslideshow">
@@ -98,12 +98,8 @@
     <% end %>
   <% end %>
 <% end %>
-
-
  <%= render 'layouts/header' %>
  <%= render 'layouts/headerm' %>
-
-
  <% if request.url.include?("select")||request.url.include?("topPage") %>
   <div class="container" style="overflow-y:hidden;">
  <% else %>
@@ -114,7 +110,6 @@
     <% end %>
     <%= yield %>
   </div>
-
 </body>
 </html>
 

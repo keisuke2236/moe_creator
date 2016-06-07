@@ -1,3 +1,9 @@
+@media (max-width: 992px) {
+    .select_box{
+        height:500px;
+    }
+}
+
 @media (min-width: 768px) {
     .mobile_true{
          display:none;
@@ -10,7 +16,7 @@
          display:none;
     }
     .select_box{
-        height:400px;
+        height:450px;
     }
 }
 
@@ -80,4 +86,5 @@
     .login_box{
         height: 400px;
     }
+
 }
