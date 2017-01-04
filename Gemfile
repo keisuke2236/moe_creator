@@ -12,6 +12,7 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'carrierwave'
+gem 'therubyracer', platforms: :ruby
 
 group :development, :test do
   gem 'sqlite3'
