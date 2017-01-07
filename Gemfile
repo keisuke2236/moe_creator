@@ -13,6 +13,10 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'carrierwave'
 gem 'therubyracer', platforms: :ruby
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
+gem 'capistrano-rbenv'
 
 group :development, :test do
   gem 'sqlite3'
